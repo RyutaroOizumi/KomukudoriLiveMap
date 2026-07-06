@@ -1,32 +1,58 @@
-html, body {
+/* ==========================
+   全体
+========================== */
 
-    margin: 0;
-    padding: 0;
-    height: 100%;
-
-    font-family: sans-serif;
-
+html,
+body{
+    margin:0;
+    padding:0;
+    width:100%;
+    height:100%;
+    font-family:
+        "Yu Gothic",
+        "Hiragino Sans",
+        sans-serif;
 }
+
+body{
+    display:flex;
+}
+
+/* ==========================
+   レイアウト
+========================== */
 
 #container{
 
     display:flex;
 
+    width:100%;
     height:100vh;
 
 }
 
+
+/* ==========================
+   サイドバー
+========================== */
+
 #sidebar{
 
-    width:320px;
+    width:340px;
+    min-width:340px;
 
-    background:#ffffff;
-
-    padding:20px;
+    height:100vh;
 
     overflow-y:auto;
 
-    box-shadow:2px 0 8px rgba(0,0,0,.15);
+    background:white;
+
+    border-right:1px solid #ddd;
+
+    box-sizing:border-box;
+
+    padding:18px;
+    
 
 }
 
@@ -34,25 +60,88 @@ html, body {
 
     flex:1;
 
+    height:100vh;
+
 }
+
+/* ==========================
+   タイトル
+========================== */
+
+#sidebar h1{
+
+    margin:0;
+
+    font-size:21px;
+
+    color:#0D47A1;
+
+    white-space:nowrap;
+
+    font-weight:bold;
+
+}
+
+
+#sidebar h2{
+
+    margin-top:2px;
+
+    margin-bottom:16px;
+
+    font-size:21px;
+
+    color:#0D47A1;
+
+    font-weight:normal;
+
+}
+
+/* ==========================
+   フッター
+========================== */
+
+#footer{
+
+    margin-top:16px;
+
+    text-align:center;
+
+    font-size:11px;   /* ← この数字で大きさを調整 */
+
+    color:#888;
+
+}
+
+
+/* ==========================
+   個体一覧
+========================== */
 
 #bird-list{
 
-    margin-top:20px;
+    display:flex;
+
+    flex-direction:column;
+
+    gap:8px;
 
 }
 
+
+/* ==========================
+   個体カード
+========================== */
+
 .bird-card{
 
-    background:white;
+    padding:8px 10px;
 
-    border-radius:10px;
+    border:1px solid #dddddd;
 
-    padding:15px;
+    border-radius:8px;
 
-    margin-bottom:15px;
-
-    border:1px solid #ddd;
+    background:#fafafa;
 
     cursor:pointer;
 
@@ -60,26 +149,76 @@ html, body {
 
 }
 
+
 .bird-card:hover{
 
-    transform:translateY(-2px);
+    background:#f1f8ff;
 
-    box-shadow:0 4px 12px rgba(0,0,0,.15);
+    border-color:#90CAF9;
 
 }
+
+
+/* ==========================
+   名前
+========================== */
 
 .bird-name{
 
-    font-size:20px;
+    font-size:16px;
 
     font-weight:bold;
 
+    margin-bottom:3px;
+
 }
+
+
+/* ==========================
+   情報
+========================== */
 
 .bird-info{
 
-    margin-top:8px;
+    font-size:12px;
 
-    color:#666;
+    color:#666666;
+
+    line-height:1.35;
+
+}
+
+
+/* ==========================
+   地図
+========================== */
+
+#map{
+
+    flex:1;
+
+    height:100vh;
+
+}
+
+
+/* ==========================
+   Leaflet Popup
+========================== */
+
+.leaflet-popup-content{
+
+    font-size:14px;
+
+    line-height:1.5;
+
+}
+
+
+.leaflet-popup-content b{
+
+    font-size:17px;
+
+    color:#1565C0;
 
 }

@@ -1,4 +1,23 @@
-BirdID,BirdName,Species,Sex,ReleaseDate,ReleaseSite,Color,Public,Status,Photo,Description
-001,きぼう,Chestnut-cheeked Starling,M,2026-04-20,札幌,#1E88E5,TRUE,Tracking,kibou.jpg,北海道生まれのオス
-002,ひかり,Chestnut-cheeked Starling,F,2026-04-20,札幌,#E53935,FALSE,Tracking,hikari.jpg,最も早く渡りを開始
-003,ゆめ,Chestnut-cheeked Starling,M,2026-04-20,札幌,#43A047,TRUE,Tracking,yume.jpg,
+BirdID,BirdName,Species,Sex,ReleaseDate,ReleaseSite,Color,Public,Status,Photo,DisplayOrder,Description
+980,0980,Chestnut-cheeked Starling,M,2026-04-20,盛岡,#8fbc8f,TRUE,Tracking,kibou.jpg,5,盛岡捕獲のオス
+981,0981,Chestnut-cheeked Starling,F,2026-04-20,盛岡,#ff69b4,TRUE,Tracking,hikari.jpg,6
+982,0982,Chestnut-cheeked Starling,M,2026-04-20,盛岡,#98fb98,TRUE,Tracking,yume.jpg,7
+983,0983,Chestnut-cheeked Starling,F,2026-04-20,盛岡,#ee82ee,TRUE,Tracking,yume.jpg,8
+984,0984,Chestnut-cheeked Starling,F,2026-04-20,盛岡,#dda0dd,TRUE,Tracking,yume.jpg,9
+985,0985,Chestnut-cheeked Starling,M,2026-04-20,盛岡,#00ff7f,TRUE,Tracking,yume.jpg,10
+986,0986,Chestnut-cheeked Starling,M,2026-04-20,盛岡,#32cd32,TRUE,Tracking,yume.jpg,11
+987,0987,Chestnut-cheeked Starling,F,2026-04-20,盛岡,#800080,TRUE,Tracking,yume.jpg,12
+988,0988,Chestnut-cheeked Starling,M,2026-04-20,盛岡,#7fff00,TRUE,Tracking,yume.jpg,13
+989,0989,Chestnut-cheeked Starling,F,2026-04-20,盛岡,#7b68ee,TRUE,Tracking,yume.jpg,14
+990,0990,Chestnut-cheeked Starling,F,2026-04-20,盛岡,#deb887,TRUE,Tracking,yume.jpg,15
+991,0991,Chestnut-cheeked Starling,M,2026-04-20,盛岡,#4169e1,TRUE,Tracking,yume.jpg,16
+992,0992,Chestnut-cheeked Starling,F,2026-04-20,盛岡,#ffd700,TRUE,Tracking,yume.jpg,17
+993,0993,Chestnut-cheeked Starling,M,2026-04-20,盛岡,#1e90ff,TRUE,Tracking,yume.jpg,18
+994,0994,Chestnut-cheeked Starling,F,2026-04-20,盛岡,#d2b48c,TRUE,Tracking,yume.jpg,19
+995,0995,Chestnut-cheeked Starling,M,2026-04-20,盛岡,#00bfff,TRUE,Tracking,yume.jpg,20
+1404,ぶな,Chestnut-cheeked Starling,M,2026-04-20,盛岡,#228b22,TRUE,Tracking,yume.jpg,3
+149f,さくら,Chestnut-cheeked Starling,F,2026-04-20,盛岡,#ff00ff,TRUE,Tracking,yume.jpg,4
+14a1,まめぱん,Chestnut-cheeked Starling,M,2026-04-20,盛岡,#4b0082,TRUE,Tracking,yume.jpg,1
+14a2,ちくわ,Chestnut-cheeked Starling,F,2026-04-20,盛岡,#ffa500,TRUE,Tracking,yume.jpg,2
+149d,名無しくん,Chestnut-cheeked Starling,F,2026-04-20,盛岡,#43A047,FALSE,Tracking,yume.jpg,
+149e,名無しちゃん,Chestnut-cheeked Starling,M,2026-04-20,盛岡,#43A047,FALSE,Tracking,yume.jpg,

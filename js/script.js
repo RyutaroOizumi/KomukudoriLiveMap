@@ -1,180 +1,121 @@
-async function main() {
+async function main(){
 
-    try {
+    console.log("MAIN START");
 
-        console.log("MAIN START");
+    //---------------------------------
+    // 地図
+    //---------------------------------
 
-        // --------------------
-        // 地図
-        // --------------------
-        const map = createMap();
+    const map = createMap();
 
-        // --------------------
-        // データ読み込み
-        // --------------------
-        const birds = await loadCSV("data/birds.csv");
-        const gps = await loadCSV("data/gps.csv");
+    //---------------------------------
+    // CSV
+    //---------------------------------
 
-        // --------------------
-        // 辞書
-        // --------------------
-        const birdDict = makeBirdDictionary(birds);
+    const birds = await loadCSV("data/birds.csv");
 
-        // --------------------
-        // 最新GPS（個体ごと1件）
-        // --------------------
-        const latestGPS = {};
+    const gps = await loadCSV("data/gps.csv");
 
-        gps.forEach(record => {
+    //---------------------------------
+    // 個体辞書
+    //---------------------------------
 
-            const id = String(record.BirdID).trim();
+    const birdDict = makeBirdDictionary(birds);
 
-            if (!record.Latitude || !record.Longitude) return;
+    //---------------------------------
+    // 累積距離計算
+    //---------------------------------
 
-            // birdDict依存は外す（重要：欠損対策）
-            latestGPS[id] = record;
-        });
+    calculateBirdDistances(gps,birdDict);
 
-        // --------------------
-        // マーカー・範囲
-        // --------------------
-        const markers = {};
-        const bounds = [];
+    //---------------------------------
+    // 最新GPS取得
+    //---------------------------------
 
-        // --------------------
-        // 色生成
-        // --------------------
-        function getColor(id) {
+    const latestGPS = {};
 
-            const colors = [
-                "#e41a1c", "#377eb8", "#4daf4a", "#984ea3",
-                "#ff7f00", "#ffff33", "#a65628", "#f781bf"
-            ];
+    gps.forEach(function(record){
 
-            let hash = 0;
-            for (let i = 0; i < id.length; i++) {
-                hash = id.charCodeAt(i) + ((hash << 5) - hash);
-            }
+        if(!record.Latitude) return;
 
-            return colors[Math.abs(hash) % colors.length];
-        }
+        const id = String(record.BirdID).trim();
 
-        // --------------------
-        // 軌跡生成
-        // --------------------
-        const tracks = {};
+        if(!birdDict[id]) return;
 
-        gps.forEach(r => {
+        latestGPS[id] = record;
 
-            const id = String(r.BirdID).trim();
-
-            if (!r.Latitude || !r.Longitude) return;
-
-            if (!tracks[id]) tracks[id] = [];
-
-            tracks[id].push([
-                Number(r.Latitude),
-                Number(r.Longitude),
-                r.DateTime
-            ]);
-        });
-
-        Object.keys(tracks).forEach(id => {
-            tracks[id].sort((a, b) =>
-                new Date(a[2]) - new Date(b[2])
-            );
-        });
-
-        const polylines = {};
-
-        Object.keys(tracks).forEach(id => {
-
-            const latlngs = tracks[id].map(p => [p[0], p[1]]);
-
-            if (latlngs.length < 2) return;
-
-            const line = L.polyline(latlngs, {
-                color: getColor(id),
-                weight: 3,
-                opacity: 0.6
-            }).addTo(map);
-
-            polylines[id] = line;
-        });
-
-        // --------------------
-        // マーカー描画
-        // --------------------
-        Object.values(latestGPS).forEach(record => {
-
-          const id = String(record.BirdID).trim();
-
-        const lat = Number(record.Latitude);
-        const lng = Number(record.Longitude);
-
-        if (isNaN(lat) || isNaN(lng)) return;
-
-        // ★ここが重要（Unknown排除）
-         const bird = birdDict[id];
-        if (!bird) {
-        console.warn("missing bird:", id);
-        return;
-         }
-
-        const color = getColor(id);
-
-        const marker = L.circleMarker([lat, lng], {
-            radius: 6,
-            color: color,
-            fillColor: color,
-            fillOpacity: 0.9
-        })
-        .addTo(map)
-        .bindPopup(
-            `<b>${bird.BirdName}</b><br>` +
-            `${bird.Species}<br>` +
-            `性別：${bird.Sex}<br>` +
-            `日時：${record.DateTime}`
-        );
-
-        markers[id] = marker;
-        bounds.push([lat, lng]);
     });
 
-        // --------------------
-        // 自動ズーム
-        // --------------------
-        if (bounds.length > 0) {
-            map.fitBounds(bounds, { padding: [50, 50] });
-        }
+    //---------------------------------
+    // マーカー
+    //---------------------------------
 
-        // --------------------
-        // ルート（安全実行）
-        // --------------------
-        try {
-            if (typeof drawRoutes === "function") {
-                drawRoutes(map, gps, birdDict);
-            }
-        } catch (e) {
-            console.warn("drawRoutes skipped", e);
-        }
+    const markers = {};
 
-        // --------------------
-        // UI
-        // --------------------
-        createBirdList(
+    Object.values(latestGPS).forEach(function(record){
+
+        const id = String(record.BirdID).trim();
+
+        const bird = birdDict[id];
+
+        const marker = createBirdMarker(
+
             map,
-            latestGPS,
-            birdDict,
-            markers,
+
+            record,
+
+            bird
+
         );
 
-        console.log("MAIN DONE");
+        markers[id]=marker;
 
-    } catch (e) {
+    });
 
-        console.error("FATAL ERROR:", e);
-    }
+    //---------------------------------
+    // ルート
+    //---------------------------------
+
+    drawRoutes(
+
+        map,
+
+        gps,
+
+        birdDict
+
+    );
+
+    //---------------------------------
+    // 左一覧
+    //---------------------------------
+
+    createBirdList(
+
+        map,
+
+        latestGPS,
+
+        birdDict,
+
+        markers
+
+    );
+
+    //---------------------------------
+    // 日本全体
+    //---------------------------------
+
+    map.setView(
+
+        [38.5,138.5],
+
+        5
+
+    );
+
+    console.log("MAIN DONE");
+
 }
 
 main();

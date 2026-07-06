@@ -1,0 +1,2 @@
+﻿UUID,Transmitting time,Collecting time,Longitude,Latitude,Altitude,Altitude (Ellipsoid),Speed,North Speed,East Speed,Down Speed,Course,Satellite used,Positioning mode,HorAccuracy,VerAccuracy,GPS time consumption,Data Source,HDOP,VDOP
+2c00001404,2026-07-02T12:48:35.942Z,2026-07-02T12:00:37Z,141.13568,39.7087456,69.6,105.3,0,0,0,0,0,5,2,-99999.9,-99999.9,38,[1],2.22,2.49

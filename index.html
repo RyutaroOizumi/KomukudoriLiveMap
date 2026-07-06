@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>コムクドリ渡りプロジェクト Live Map</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Leaflet -->
+    <link rel="stylesheet"
+          href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+<div id="container">
+
+    <div id="sidebar">
+
+        <h2>コムクドリ渡りプロジェクト Live Map</h2>
+        
+        <div id="bird-list"></div>
+
+    </div>
+
+    <div id="map"></div>
+
+</div>
+
+...
+</body>
+
+<!-- Leaflet -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<!-- Papa Parse -->
+<script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+
+<!-- 自作JavaScript -->
+<script src="js/utils.js"></script>
+<script src="js/csv.js"></script>
+<script src="js/birds.js"></script>
+<script src="js/map.js"></script>
+<script src="js/route.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/script.js"></script>
+
+</body>
+</html>

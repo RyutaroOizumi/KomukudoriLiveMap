@@ -1,0 +1,85 @@
+html, body {
+
+    margin: 0;
+    padding: 0;
+    height: 100%;
+
+    font-family: sans-serif;
+
+}
+
+#container{
+
+    display:flex;
+
+    height:100vh;
+
+}
+
+#sidebar{
+
+    width:320px;
+
+    background:#ffffff;
+
+    padding:20px;
+
+    overflow-y:auto;
+
+    box-shadow:2px 0 8px rgba(0,0,0,.15);
+
+}
+
+#map{
+
+    flex:1;
+
+}
+
+#bird-list{
+
+    margin-top:20px;
+
+}
+
+.bird-card{
+
+    background:white;
+
+    border-radius:10px;
+
+    padding:15px;
+
+    margin-bottom:15px;
+
+    border:1px solid #ddd;
+
+    cursor:pointer;
+
+    transition:0.2s;
+
+}
+
+.bird-card:hover{
+
+    transform:translateY(-2px);
+
+    box-shadow:0 4px 12px rgba(0,0,0,.15);
+
+}
+
+.bird-name{
+
+    font-size:20px;
+
+    font-weight:bold;
+
+}
+
+.bird-info{
+
+    margin-top:8px;
+
+    color:#666;
+
+}

@@ -1,0 +1,4 @@
+BirdID,BirdName,Species,Sex,ReleaseDate,ReleaseSite,Color,Public,Status,Photo,Description
+001,きぼう,Chestnut-cheeked Starling,M,2026-04-20,札幌,#1E88E5,TRUE,Tracking,kibou.jpg,北海道生まれのオス
+002,ひかり,Chestnut-cheeked Starling,F,2026-04-20,札幌,#E53935,FALSE,Tracking,hikari.jpg,最も早く渡りを開始
+003,ゆめ,Chestnut-cheeked Starling,M,2026-04-20,札幌,#43A047,TRUE,Tracking,yume.jpg,

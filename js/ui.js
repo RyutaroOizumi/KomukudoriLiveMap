@@ -1,43 +1,110 @@
-card.onclick = function(){
+// ------------------------------------
+// 日付表示
+// ------------------------------------
+function formatDate(date){
 
-    map.flyTo(
-        [
-            Number(record.Latitude),
-            Number(record.Longitude)
-        ],
-        8,
-        {
-            animate:true,
-            duration:1.5
-        }
-    );
+    if(!date) return "-";
 
-    const marker = markers[record.BirdID];
+    const d = new Date(date);
 
-    if(marker){
+    if(isNaN(d.getTime())) return "-";
 
-        setTimeout(function(){
+    return d.toLocaleString("ja-JP",{
+        year:"numeric",
+        month:"2-digit",
+        day:"2-digit",
+        hour:"2-digit",
+        minute:"2-digit"
+    });
 
-            marker.openPopup();
+}
 
-        },700);
 
-    }
+// ------------------------------------
+// 左側の個体一覧
+// ------------------------------------
+function createBirdList(map, latestGPS, birdDict, markers){
 
-    // --------------------------
-    // スマホだけサイドバーを閉じる
-    // --------------------------
-    if(window.innerWidth <= 768){
+    const list = document.getElementById("bird-list");
 
-        const sidebar = document.getElementById("sidebar");
-        const menuButton = document.getElementById("menu-button");
+    if(!list) return;
 
-        sidebar.classList.remove("open");
+    list.innerHTML = "";
 
-        if(menuButton){
-            menuButton.style.display = "block";
-        }
+    const records = Object.values(latestGPS).sort(function(a,b){
 
-    }
+        return a.BirdID.localeCompare(b.BirdID);
 
-};
+    });
+
+    records.forEach(function(record){
+
+        const bird = birdDict[record.BirdID];
+
+        // 非公開個体は表示しない
+        if(!bird) return;
+
+        const card = document.createElement("div");
+
+        card.className = "bird-card";
+
+        card.innerHTML = `
+            <div class="bird-name" style="color:${bird.Color}">
+                ● ${bird.BirdName}
+            </div>
+
+            <div class="bird-info">
+                ${bird.Sex=="M" ? "♂ オス" : "♀ メス"}<br>
+                最終更新：${formatDate(record.DateTime)}
+            </div>
+        `;
+
+        // ----------------------------
+        // 個体クリック
+        // ----------------------------
+        card.onclick = function(){
+
+            map.flyTo(
+                [
+                    Number(record.Latitude),
+                    Number(record.Longitude)
+                ],
+                8,
+                {
+                    animate:true,
+                    duration:1.5
+                }
+            );
+
+            const marker = markers[record.BirdID];
+
+            if(marker){
+
+                setTimeout(function(){
+
+                    marker.openPopup();
+
+                },700);
+
+            }
+
+            // ----------------------------
+            // スマホだけサイドバーを閉じる
+            // ----------------------------
+            if(window.innerWidth <= 768){
+
+                const sidebar = document.getElementById("sidebar");
+
+                if(sidebar){
+                    sidebar.classList.remove("open");
+                }
+
+            }
+
+        };
+
+        list.appendChild(card);
+
+    });
+
+}

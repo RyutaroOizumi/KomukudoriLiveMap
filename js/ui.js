@@ -1,94 +1,43 @@
-// ------------------------------------
-// 日付表示
-// ------------------------------------
-function formatDate(date){
+card.onclick = function(){
 
-    if(!date) return "-";
+    map.flyTo(
+        [
+            Number(record.Latitude),
+            Number(record.Longitude)
+        ],
+        8,
+        {
+            animate:true,
+            duration:1.5
+        }
+    );
 
-    const d = new Date(date);
+    const marker = markers[record.BirdID];
 
-    if(isNaN(d.getTime())) return "-";
+    if(marker){
 
-    return d.toLocaleString("ja-JP",{
-        year:"numeric",
-        month:"2-digit",
-        day:"2-digit",
-        hour:"2-digit",
-        minute:"2-digit"
-    });
+        setTimeout(function(){
 
-}
+            marker.openPopup();
 
+        },700);
 
-// ------------------------------------
-// 左側の個体一覧
-// ------------------------------------
-function createBirdList(map, latestGPS, birdDict, markers){
+    }
 
-    const list = document.getElementById("bird-list");
+    // --------------------------
+    // スマホだけサイドバーを閉じる
+    // --------------------------
+    if(window.innerWidth <= 768){
 
-    if(!list) return;
+        const sidebar = document.getElementById("sidebar");
+        const menuButton = document.getElementById("menu-button");
 
-    list.innerHTML = "";
+        sidebar.classList.remove("open");
 
-    const records = Object.values(latestGPS).sort(function(a,b){
+        if(menuButton){
+            menuButton.style.display = "block";
+        }
 
-        return a.BirdID.localeCompare(b.BirdID);
+    }
 
-    });
-
-    records.forEach(function(record){
-
-        const bird = birdDict[record.BirdID];
-
-        // 非公開個体は表示しない
-        if(!bird) return;
-
-        const card = document.createElement("div");
-
-        card.className = "bird-card";
-
-        card.innerHTML = `
-            <div class="bird-name" style="color:${bird.Color}">
-                ● ${bird.BirdName}
-            </div>
-
-            <div class="bird-info">
-                ${bird.Sex=="M" ? "♂ オス" : "♀ メス"}<br>
-                最終更新：${formatDate(record.DateTime)}
-            </div>
-        `;
-
-        card.onclick = function(){
-
-            map.flyTo(
-                [
-                    Number(record.Latitude),
-                    Number(record.Longitude)
-                ],
-                8,
-                {
-                    animate:true,
-                    duration:1.5
-                }
-            );
-
-            const marker = markers[record.BirdID];
-
-            if(marker){
-
-                setTimeout(function(){
-
-                    marker.openPopup();
-
-                },700);
-
-            }
-
-        };
-
-        list.appendChild(card);
-
-    });
-
-}
+};

@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (!menuButton || !sidebar) return;
 
-    // メニューを開閉
+    // ハンバーガーを押す
     menuButton.addEventListener("click", (e) => {
 
         e.stopPropagation();
@@ -14,14 +14,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
     });
 
-    // サイドバー内をクリックしても閉じない
+    // サイドバー内では閉じない
     sidebar.addEventListener("click", (e) => {
 
         e.stopPropagation();
 
     });
 
-    // 地図などサイドバー以外をクリックしたら閉じる
+    // 地図などをタップしたら閉じる
     document.addEventListener("click", () => {
 
         sidebar.classList.remove("open");

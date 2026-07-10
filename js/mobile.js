@@ -5,9 +5,26 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (!menuButton || !sidebar) return;
 
-    menuButton.addEventListener("click", () => {
+    // メニューを開閉
+    menuButton.addEventListener("click", (e) => {
+
+        e.stopPropagation();
 
         sidebar.classList.toggle("open");
+
+    });
+
+    // サイドバー内をクリックしても閉じない
+    sidebar.addEventListener("click", (e) => {
+
+        e.stopPropagation();
+
+    });
+
+    // 地図などサイドバー以外をクリックしたら閉じる
+    document.addEventListener("click", () => {
+
+        sidebar.classList.remove("open");
 
     });
 

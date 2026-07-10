@@ -5,7 +5,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (!menuButton || !sidebar) return;
 
-    // ハンバーガーを押す
+    // スマホでは最初だけ開く
+    if (window.innerWidth <= 768) {
+        sidebar.classList.add("open");
+    }
+
+    // ハンバーガー
     menuButton.addEventListener("click", (e) => {
 
         e.stopPropagation();
@@ -14,14 +19,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
     });
 
-    // サイドバー内では閉じない
+    // サイドバー内
     sidebar.addEventListener("click", (e) => {
 
         e.stopPropagation();
 
     });
 
-    // 地図などをタップしたら閉じる
+    // 地図タップで閉じる
     document.addEventListener("click", () => {
 
         sidebar.classList.remove("open");

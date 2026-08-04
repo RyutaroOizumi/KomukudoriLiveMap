@@ -7,7 +7,7 @@ BirdID,BirdName,Species,Sex,ReleaseDate,ReleaseSite,Color,Public,Status,Photo,Di
 985,0985,Chestnut-cheeked Starling,M,2026/4/20,盛岡,#00ff7f,TRUE,Tracking,yume.jpg,10,
 986,0986,Chestnut-cheeked Starling,M,2026/4/20,盛岡,#32cd32,TRUE,Tracking,yume.jpg,11,
 987,0987,Chestnut-cheeked Starling,F,2026/4/20,盛岡,#800080,TRUE,Tracking,yume.jpg,12,
-988,9988,Chestnut-cheeked Starling,M,2026/4/20,盛岡,#7fff00,TRUE,Tracking,yume.jpg,13,
+988,0988,Chestnut-cheeked Starling,M,2026/4/20,盛岡,#7fff00,TRUE,Tracking,yume.jpg,13,
 989,0989,Chestnut-cheeked Starling,F,2026/4/20,盛岡,#7b68ee,FALSE,Tracking,yume.jpg,14,
 990,0990,Chestnut-cheeked Starling,F,2026/4/20,盛岡,#deb887,TRUE,Tracking,yume.jpg,15,
 991,0991,Chestnut-cheeked Starling,M,2026/4/20,盛岡,#4169e1,FALSE,Tracking,yume.jpg,16,
